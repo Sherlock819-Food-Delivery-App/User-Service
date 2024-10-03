@@ -14,10 +14,16 @@ public class DataLoader {
 
     public void loadData() {
         int numberOfRecords = 10;
-        long id = userRepo.count()+1;
+        long id = userRepo.count() + 1;
         for (int i = 0; i < numberOfRecords; i++, id++) {
             String[] name = NameGenerator.generateRandomName().split(" ");
-            userRepo.save(new User(id, name[0], name[1], MobileNumberGenerator.generateMobileNumber(), EmailGenerator.generateRandomEmail()));
+            userRepo.save(User.builder()
+                    .userId(id)
+                    .firstName(name[0])
+                    .lastName(name[1])
+                    .mobile(MobileNumberGenerator.generateMobileNumber())
+                    .email(EmailGenerator.generateRandomEmail())
+                    .build());
         }
     }
 

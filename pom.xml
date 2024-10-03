@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.PlayGround</groupId>
-	<artifactId>PlayGround</artifactId>
+	<artifactId>User</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PlayGround</name>
 	<description>PlayGround for spring boot services</description>

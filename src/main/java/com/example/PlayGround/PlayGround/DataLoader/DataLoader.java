@@ -18,7 +18,7 @@ public class DataLoader {
     @PostConstruct
     public void loadData() {
         int numberOfRecords = 10;
-        long id = userRepo.count()+1;
+        long id = userRepo.count() + 1;
         for (int i = 0; i < numberOfRecords; i++, id++) {
             String[] name = NameGenerator.generateRandomName().split(" ");
             userRepo.save(User.builder()

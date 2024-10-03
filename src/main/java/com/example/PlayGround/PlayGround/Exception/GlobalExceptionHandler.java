@@ -48,8 +48,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ErrorResponse> handleSQLIntegrityConstraintViolation(SQLIntegrityConstraintViolationException ex) {
         StringBuilder error = new StringBuilder();
-        if(ex.getSQLState().equals("23505")) {
-            if(ex.getMessage().contains("Unique index or primary key violation")) {
+        if (ex.getSQLState().equals("23505")) {
+            if (ex.getMessage().contains("Unique index or primary key violation")) {
                 error.append("Mobile or email already registered!");
             }
         }
