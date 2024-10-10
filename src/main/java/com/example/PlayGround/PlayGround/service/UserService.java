@@ -15,4 +15,6 @@ public interface UserService {
     UserResponseDTO updateUserProfile(RegistrationRequestDTO registrationRequestDTO);
 
     User getUser();
+
+    Boolean isAuthenticated();
 }

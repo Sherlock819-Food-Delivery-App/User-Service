@@ -48,4 +48,9 @@ public class UserController {
         List<UserResponseDTO> userResponseDTOs = userMapper.toResponseDto(userService.findAll());
         return new ResponseEntity<>(userResponseDTOs, HttpStatus.OK);
     }
+
+    @GetMapping("/isAuthenticated")
+    public Boolean isAuthenticated() {
+        return userService.isAuthenticated();
+    }
 }

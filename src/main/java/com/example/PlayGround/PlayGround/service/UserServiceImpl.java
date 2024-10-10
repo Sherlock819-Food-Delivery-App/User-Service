@@ -98,17 +98,33 @@ public class UserServiceImpl implements UserService {
     }
 
     private void validateUser(RegistrationRequestDTO user) {
+        if(user.getFirstName() == null || user.getFirstName().isEmpty())
+        {
+            throw new InValidElementException("First Name must be provided!");
+        }
         if (!validationUtilities.isValidName(user.getFirstName())) {
             throw new InValidElementException(
                     "First name must only contains alphabets. Invalid entry - {" + user.getFirstName() + "}");
+        }
+        if(user.getLastName() == null || user.getLastName().isEmpty())
+        {
+            throw new InValidElementException("Last Name must be provided!");
         }
         if (!validationUtilities.isValidName(user.getLastName())) {
             throw new InValidElementException(
                     "Last name must only contains alphabets. Invalid entry - {" + user.getLastName() + "}");
         }
+        if(user.getMobile() == null || user.getMobile().isEmpty())
+        {
+            throw new InValidElementException("Mobile number must be provided!");
+        }
         if (!validationUtilities.isValidMobileNumber(user.getMobile())) {
             throw new InValidElementException(
                     "Mobile number must only contain 10 digits. Invalid entry - {" + user.getMobile() + "}");
+        }
+        if(user.getEmail() == null || user.getEmail().isEmpty())
+        {
+            throw new InValidElementException("Email must be provided!");
         }
         if (!validationUtilities.isValidEmailAddress(user.getEmail())) {
             throw new InValidElementException(
@@ -116,10 +132,17 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public Boolean isAuthenticated()
+    {
+        return getPrincipalUser() != null;
+    }
 
     private User getPrincipalUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName(); // fetch username
         return userRepo.findByEmail(username); // fetch user based on JWT token details
     }
+
+
 }

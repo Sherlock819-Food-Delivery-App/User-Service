@@ -24,7 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/h2-console/**").permitAll() // Allow public access to certain endpoints
+                        .requestMatchers("/auth/**", "/h2-console/**", "/userdetails/**").permitAll() // Allow public access to certain endpoints
                         .anyRequest().authenticated() // All other requests need to be authenticated
                 )
                 .sessionManagement(session -> session
