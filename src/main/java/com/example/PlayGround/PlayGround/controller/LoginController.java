@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
@@ -41,15 +44,17 @@ public class LoginController {
 
     // Endpoint for validating the OTP
     @PostMapping("/validate-otp")
-    public ResponseEntity<String> validateOtp(@RequestBody LoginValidationDTO otpValidationRequest) {
+    public ResponseEntity<Map<String, String>> validateOtp(@RequestBody LoginValidationDTO otpValidationRequest) {
         try {
             String jwtToken = otpService.validateOtpForEmail(otpValidationRequest.getEmail(), otpValidationRequest.getOtp());
-            return ResponseEntity.ok(jwtToken);
+            return ResponseEntity.ok(new HashMap<String, String>() {{
+                put("token", jwtToken);
+            }});
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(500).body("An error occurred during OTP validation.");
+            return ResponseEntity.status(500).body(Map.of("error", "An error occurred during OTP validation."));
         }
     }
 }
