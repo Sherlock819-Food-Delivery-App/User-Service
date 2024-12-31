@@ -8,11 +8,11 @@
 		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.PlayGround</groupId>
-	<artifactId>User</artifactId>
+	<groupId>com.example</groupId>
+	<artifactId>User-Service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PlayGround</name>
-	<description>PlayGround for spring boot services</description>
+	<name>User</name>
+	<description>User micro-service for food delivery app</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -67,8 +67,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
